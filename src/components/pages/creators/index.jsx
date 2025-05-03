@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CreatorsAPI } from "@/apis/creators";
 import { useCreators } from "@/components/pages/creators/states";
 import { useQuery } from "@tanstack/react-query";
@@ -6,8 +6,18 @@ import CreatorCard from "./widgets/creator-card";
 import PaginationWithNumbers from "@/components/ui/numbered-pagination";
 
 const CreatorsPage = () => {
-  const { creators = [], setCreators, query, setQuery } = useCreators();
-  const { isLoading, refetch: getCreators } = useQuery({
+  const {
+    creators = [],
+    setCreators,
+    query,
+    setQuery,
+    clearState,
+  } = useCreators();
+  const {
+    data,
+    isLoading,
+    refetch: getCreators,
+  } = useQuery({
     queryKey: ["creators", JSON.stringify(query)],
     queryFn: async () => {
       const response = await CreatorsAPI.getCreators(query);
@@ -24,6 +34,12 @@ const CreatorsPage = () => {
     setQuery({ ...query, page: page });
     getCreators();
   };
+
+  useEffect(() => {
+    setCreators(data?.results || []);
+    setQuery({ ...query, count: data?.count });
+    return () => clearState();
+  }, []);
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">All Game Creators</h1>

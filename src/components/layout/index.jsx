@@ -13,7 +13,7 @@ const AppLayout = () => {
       <SidebarInset>
         <main className="m-4 flex flex-col h-full">
           <SidebarTrigger className="bg-background sticky top-4" />
-          <section className="flex-1 p-3 ">
+          <section className="flex flex-col flex-1 p-3">
             <Outlet />
           </section>
         </main>

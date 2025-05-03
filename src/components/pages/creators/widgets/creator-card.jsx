@@ -3,10 +3,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Wrench } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const CreatorCard = ({ creator, loading = false }) => {
+  const navigate = useNavigate();
   return (
-    <div className="rounded-lg border border-foreground hover:shadow-lg cursor-pointer">
+    <div
+      className="rounded-lg border border-foreground hover:shadow-lg cursor-pointer"
+      onClick={() => navigate(`/creators/${creator?.slug}`)}
+    >
       {loading ? (
         <Skeleton className="h-[100px] w-full rounded-t-lg" />
       ) : (
