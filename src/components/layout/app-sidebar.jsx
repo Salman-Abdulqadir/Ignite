@@ -5,6 +5,8 @@ import {
   Dice6,
   FileText,
   UserPen,
+  BriefcaseBusiness,
+  Gamepad2,
 } from "lucide-react";
 
 import {
@@ -23,8 +25,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ThemeChanger from "./app-theme-changer";
 
 const items = [
-  { url: "/", icon: Home, title: "Home" },
+  { url: "/", icon: Gamepad2, title: "Games" },
   { url: "/creators", icon: UserPen, title: "Game Creators" },
+  { url: "/developers", icon: BriefcaseBusiness, title: "Developers" },
 ];
 
 const Header = () => {
